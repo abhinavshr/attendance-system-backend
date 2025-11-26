@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\AuthController;
@@ -17,3 +18,5 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 Route::middleware(['auth:sanctum', 'role:teacher'])->group(function () {
     Route::get('/teacher/attendance', [TeacherController::class, 'attendanceList']);
 });
+
+Route::middleware(['auth:sanctum', 'role:student'])->post('/checkin', [AttendanceController::class,'checkIn']);
